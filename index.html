@@ -1,0 +1,604 @@
+<html lang="en">
+    <head>
+        <title>Crystal Metro Alert</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link href="css/prism.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
+        <script type="text/javascript" src="js/prism.js"></script>
+        <script type="text/javascript" src="js/crystal-metro-alert-1.0.js"></script>
+        <script type="text/javascript">
+            
+            // simple alert
+            $(document).ready(function(){
+                $('.simple-alert').bind('click', function(){
+                    metroAlert("Simple Metro Alert."); 
+                });
+            });
+            
+            // alert with 4 different style
+            $(document).ready(function(){
+                
+                // info style alert
+                $('.alert-info').bind('click', function(){
+                    metroAlert("Info Metro Alert.", {
+                        theme: metroStyle.INFO
+                    }); 
+                });
+                
+                // success style alert
+                $('.alert-success').bind('click', function(){
+                    metroAlert("Success Metro Alert.", {
+                        theme: metroStyle.SUCCESS
+                    }); 
+                });
+                
+                // warning style alert
+                $('.alert-warning').bind('click', function(){
+                    metroAlert("Warning Metro Alert.", {
+                        theme: metroStyle.WARNING
+                    }); 
+                });
+                
+                // error style alert
+                $('.alert-error').bind('click', function(){
+                    metroAlert("Error Metro Alert.", {
+                        theme: metroStyle.ERROR
+                    }); 
+                });
+            });
+            
+            // alert with callbacks
+            var init_count = 0;
+            var close_count = 0;
+            var close_complete_count = 0;
+            $(document).ready(function(){
+                
+                $('.alert-callback').bind('click', function(){
+                    metroAlert('Alert with callbacks.', {
+                        
+                        // set style
+                        theme: metroStyle.INFO,
+                        
+                        // trigger when initialize trigger
+                        onInit: function(){
+                            $('.alert-cb-init').html("Intialize " + ++init_count);
+                        },
+                        
+                        // trigger when close button press
+                        onCloseInit: function(){
+                            $('.alert-cb-close-init').html("Close Initialized " + ++close_count);
+                        },
+                        
+                        // trigger when compelte closed
+                        onCloseComplete: function(){
+                            $('.alert-cb-close-complete-init').html("Close Complete " + ++close_complete_count);
+                        }
+                    }); 
+                });
+            });
+                                   
+            // alert with update ui
+            var delay_show_button = 5;   // 5 seconds
+            $(document).ready(function(){
+                $('.alert-update').bind('click', function(){
+                    metroAlert('Please wait... ' + delay_show_button, {
+                        
+                        // set style
+                        theme: metroStyle.INFO,
+                        
+                        // hide close button
+                        showCloseButton: false
+                    });
+                    
+                    var interval = setInterval(function(){
+                        --delay_show_button;
+                        if(delay_show_button < 1){
+                            clearInterval(interval);
+                            metroAlert('Task Completed.', {
+                                theme: metroStyle.SUCCESS,
+                                updateMetro: true,
+                                showCloseButton: true
+                            });
+                            
+                        }
+                        else{
+                            metroAlert('Please wait... ' + delay_show_button, {
+                                theme: metroStyle.INFO,
+                                updateMetro: true,
+                                showCloseButton: false
+                            });
+                        }
+                    }, 1000);
+                });
+            });
+            
+            // alert with auto close
+            var delay = 6;   // 6 seconds
+            $(document).ready(function(){                                
+                $('.alert-auto-close').bind('click', function(){
+                    delay = 6;
+                    metroAlert('Please wait... ' + delay, {
+                        
+                        // set style
+                        theme: metroStyle.INFO,
+                        
+                        // auto close true
+                        autoClose: true,
+                        
+                        // set auto close time optional default is 5 seconds
+                        autoCloseTime: (delay + 1) * 1000,
+                        
+                        // hide close button
+                        showCloseButton: false
+                    });
+                                        
+                    var interval = setInterval(function(){
+                        --delay;
+                        if(delay < 1){
+                            clearInterval(interval);
+                            metroAlert('Task Completed.', {
+                                theme: metroStyle.SUCCESS,
+                                updateMetro: true,
+                                showCloseButton: false
+                            });
+                            
+                        }
+                        else{
+                            metroAlert('Please wait... ' + delay, {
+                                theme: metroStyle.INFO,
+                                updateMetro: true,
+                                showCloseButton: false
+                            });
+                        }
+                    }, 1000);
+                });
+            });
+        
+            // change wrapper and layer classes
+            var delay = 5;
+            var wrapper_class = "new-wrapper-class";
+            var layer_class = "new-layer-class";
+            $(document).ready(function(){                                
+                $('.alert-change-class').bind('click', function(){
+                    delay = 5;
+                    metroAlert('Please wait... ' + delay, {
+                        
+                        // set style
+                        theme: metroStyle.INFO,
+                        
+                        // hide close button
+                        showCloseButton: false
+                    });
+                                        
+                    var interval = setInterval(function(){
+                        --delay;
+                        if(delay < 1){
+                            clearInterval(interval);
+                            metroAlert('Classes Changed.', {
+                                theme: metroStyle.SUCCESS,
+                                updateMetro: true,
+                                showCloseButton: true,
+                                boxClass: wrapper_class,
+                                layerClass: layer_class
+                            });
+                            
+                        }
+                        else{
+                            metroAlert('Please wait... ' + delay, {
+                                theme: metroStyle.INFO,
+                                updateMetro: true,
+                                showCloseButton: false
+                            });
+                        }
+                    }, 1000);
+                });
+            });
+                        
+            // change button text
+            var delay = 5;            
+            $(document).ready(function(){                                
+                $('.alert-change-btn-txt').bind('click', function(){
+                    delay = 5;
+                    metroAlert('Please wait... ' + delay, {
+                        
+                        // set style
+                        theme: metroStyle.INFO,
+                        
+                    });
+                                        
+                    var interval = setInterval(function(){
+                        --delay;
+                        if(delay < 1){
+                            clearInterval(interval);
+                            metroAlert('Button text changed.', {                                
+                                updateMetro: true,
+                                buttonText: "Text Changed."
+                            });                            
+                        }
+                        else{
+                            metroAlert('Please wait... ' + delay, {
+                                theme: metroStyle.INFO,
+                                updateMetro: true,
+                            });
+                        }
+                    }, 1000);
+                });
+            });
+            
+        </script>
+        <style type="text/css">
+            .new-layer-class{
+                background: white !important
+            }
+            
+            .new-wrapper-class {
+                background: none repeat scroll 0 0 black !important;                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="main-heading">Metro Alert</div>
+                <div class="maker">Crystal</div>
+                <div class="email">dp.owaisali@gmail.com</div>
+            </div>
+            <div class="clear"></div>
+            <div class="main">
+                <div class="ubox">
+                    <div class="uh">Usage</div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+
+&lt;script type="text/javascript" src="jquery-2.1.1.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="crystal-metro-alert-1.0.js"&gt;&lt;/script&gt;
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- simple alert -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Simple Alert" class="simple-alert" />
+                    </div>
+                    
+                    <div class="code1-row"> 
+                    <pre>                   
+                        <code class="language-javascript">
+// simple alert
+$(document).ready(function(){
+    $('.simple-alert').bind('click', function(){
+        metroAlert("Simple Metro Alert."); 
+    });
+});
+                        </code>
+                    </pre>
+                        <pre>
+
+
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- alert with differenty styles -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Alert Info" class="alert-info" />
+                        <input type="button" value="Alert Success" class="alert-success" />
+                        <input type="button" value="Alert Warning" class="alert-warning" />
+                        <input type="button" value="Alert Error" class="alert-error" />
+                    </div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+                        
+// alert with 4 different style
+$(document).ready(function(){
+    
+    // info style alert
+    $('.alert-info').bind('click', function(){
+        metroAlert("Info Metro Alert.", {
+            theme: metroStyle.INFO
+        }); 
+    });
+    
+    // success style alert
+    $('.alert-success').bind('click', function(){
+        metroAlert("Success Metro Alert.", {
+            theme: metroStyle.SUCCESS
+        }); 
+    });
+    
+    // warning style alert
+    $('.alert-warning').bind('click', function(){
+        metroAlert("Warning Metro Alert.", {
+            theme: metroStyle.WARNING
+        }); 
+    });
+    
+    // error style alert
+    $('.alert-error').bind('click', function(){
+        metroAlert("Error Metro Alert.", {
+            theme: metroStyle.ERROR
+        }); 
+    });
+});
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- alert with callbacks -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Alert With Callbacks" class="alert-callback" />
+                        <br /><br />
+                        <span class="alert-cb-init"></span>
+                        <br />
+                        <span class="alert-cb-close-init"></span>
+                        <br />
+                        <span class="alert-cb-close-complete-init"></span>
+                    </div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+var init_count = 0;
+var close_count = 0;
+var close_complete_count = 0;
+$(document).ready(function(){
+    
+    $('.alert-callback').bind('click', function(){
+        metroAlert('Alert with callbacks.', {
+            
+            // set style
+            theme: metroStyle.INFO,
+            
+            // trigger when initialize trigger
+            onInit: function(){
+                $('.alert-cb-init').html("Intialize " + ++init_count);
+            },
+            
+            // trigger when close button press
+            onCloseInit: function(){
+                $('.alert-cb-close-init').html("Close Initialized " + ++close_count);
+            },
+            
+            // trigger when compelte closed
+            onCloseComplete: function(){
+                $('.alert-cb-close-complete-init').html("Close Complete " + ++close_complete_count);
+            }
+        }); 
+    });
+});
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- update metro alert ui -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Alert With Update" class="alert-update" />                        
+                    </div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+// alert with update ui
+var delay_show_button = 5;   // 5 seconds
+$(document).ready(function(){
+    $('.alert-update').bind('click', function(){
+        metroAlert('Please wait... ' + delay_show_button, {
+            
+            // set style
+            theme: metroStyle.INFO,
+            
+            // hide close button
+            showCloseButton: false
+        });
+        
+        var interval = setInterval(function(){
+            --delay_show_button;
+            if(delay_show_button < 1){
+                clearInterval(interval);
+                metroAlert('Task Completed.', {
+                    theme: metroStyle.SUCCESS,
+                    updateMetro: true,
+                    showCloseButton: true
+                });
+                
+            }
+            else{
+                metroAlert('Please wait... ' + delay_show_button, {
+                    theme: metroStyle.INFO,
+                    updateMetro: true,
+                    showCloseButton: false
+                });
+            }
+        }, 1000);
+    });
+});
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- alert auto close -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Alert with Auto Close" class="alert-auto-close" />                        
+                    </div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+// alert with auto close
+var delay = 6;   // 6 seconds
+$(document).ready(function(){                                
+    $('.alert-auto-close').bind('click', function(){
+        delay = 6;
+        metroAlert('Please wait... ' + delay, {
+            
+            // set style
+            theme: metroStyle.INFO,
+            
+            // auto close true
+            autoClose: true,
+            
+            // set auto close time optional default is 5 seconds
+            autoCloseTime: (delay + 1) * 1000,
+            
+            // hide close button
+            showCloseButton: false
+        });
+                            
+        var interval = setInterval(function(){
+            --delay;
+            if(delay < 1){
+                clearInterval(interval);
+                metroAlert('Task Completed.', {
+                    theme: metroStyle.SUCCESS,
+                    updateMetro: true,
+                    showCloseButton: false
+                });
+                
+            }
+            else{
+                metroAlert('Please wait... ' + delay, {
+                    theme: metroStyle.INFO,
+                    updateMetro: true,
+                    showCloseButton: false
+                });
+            }
+        }, 1000);
+    });
+});
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- change wraper and layer classes -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Change Wrapper and Layer Classes" class="alert-change-class" />                        
+                    </div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+
+&lt;style type="text/css"&gt;
+    .new-layer-class{
+        background: white !important
+    }
+    
+    .new-wrapper-class {
+        background: black !important;                
+    }
+&lt;/style&gt;
+
+// change wrapper and layer classes
+var delay = 6;
+var wrapper_class = "new-wrapper-class";
+var layer_class = "new-layer-class";
+$(document).ready(function(){                                
+    $('.alert-change-class').bind('click', function(){
+        delay = 6;
+        metroAlert('Please wait... ' + delay, {
+            
+            // set style
+            theme: metroStyle.INFO,
+            
+            // hide close button
+            showCloseButton: false
+        });
+                            
+        var interval = setInterval(function(){
+            --delay;
+            if(delay < 1){
+                clearInterval(interval);
+                metroAlert('Classes Changed.', {
+                    theme: metroStyle.SUCCESS,
+                    updateMetro: true,
+                    showCloseButton: true,
+                    boxClass: wrapper_class,
+                    layerClass: layer_class
+                });
+                
+            }
+            else{
+                metroAlert('Please wait... ' + delay, {
+                    theme: metroStyle.INFO,
+                    updateMetro: true,
+                    showCloseButton: false
+                });
+            }
+        }, 1000);
+    });
+});
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="sep"></div>
+                
+                <!-- change button text -->
+                <div class="box-1">
+                    <div class="btn1-row">
+                        <input type="button" value="Change Button Text" class="alert-change-btn-txt" />                        
+                    </div>
+                    <div class="code1-row">
+                        <pre>
+                            <code class="language-javascript">
+
+// change button text
+var delay = 5;            
+$(document).ready(function(){                                
+    $('.alert-change-btn-txt').bind('click', function(){
+        delay = 5;
+        metroAlert('Please wait... ' + delay, {
+            
+            // set style
+            theme: metroStyle.INFO,
+            
+        });
+                            
+        var interval = setInterval(function(){
+            --delay;
+            if(delay < 1){
+                clearInterval(interval);
+                metroAlert('Button text changed.', {                                
+                    updateMetro: true,
+                    buttonText: "Text Changed."
+                });                            
+            }
+            else{
+                metroAlert('Please wait... ' + delay, {
+                    theme: metroStyle.INFO,
+                    updateMetro: true,
+                });
+            }
+        }, 1000);
+    });
+});
+                            </code>
+                        </pre>
+                    </div>
+                </div>                                
+            </div>
+            <div class="clear"></div>
+            <div class="footer">
+                <div class="copyright">Powered By: <span>Crystal</span>.</div>
+                <div class="dev-by">Developed By: <span>Syed Owais Ali</span></div>
+            </div>            
+            <div class="clear"></div>            
+        </div>                
+        <br />
+    </body>
+</html>
