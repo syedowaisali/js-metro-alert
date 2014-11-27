@@ -30,6 +30,26 @@ metroAlert("Info style alert", {
 });
 ```
 
+###buttonText (String)
+
+Change default button text with your own text.
+
+```javascript
+metroAlert("Button text changed", {
+    buttonText: "Close"
+});
+```
+
+###showCloseButton (Boolean)
+
+Control close button from boolean type default **_true_**.
+
+```javascript
+metroAlert("Close button shown", {
+    showCloseButton: true
+});
+```
+
 ###onInit (Event)
 
 Trigger before initialize metro alert.
