@@ -19,13 +19,10 @@ If you use metro alert with different style for other purpose you can use styles
 
 ####Styles
 
->metroStyle.INFO
-
->metroStyle.WARNING
-
->metroStyle.SUCCESS
-
->metroStyle.ERROR
+    metroStyle.INFO
+    metroStyle.WARNING
+    metroStyle.SUCCESS
+    metroStyle.ERROR
 
 ```javascript
 metroAlert("Info Metro Alert.", {
