@@ -9,6 +9,10 @@ First, load [jQuery](http://jquery.com/) (v1.4 or greater) and the plugin.
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/crystal-metro-alert-1.0.min.js" type="text/javascript" charset="utf-8"></script>
 
+##Screenshot
+
+![Screenshot](http://www.bluewaydesign.com/gamix/js_metro_alert/metro_alert.png)
+
 ##Options
 
 Metro Alert accepts several options to customize its behaviour:
