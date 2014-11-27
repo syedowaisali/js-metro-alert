@@ -113,3 +113,30 @@ metroAlert("Alert", {
     }
 });
 ```
+
+###onCloseInit (Event)
+
+Trigger when user click close button before close metro alert.
+
+```javascript
+metroAlert("Alert", {
+    onCloseInit: function(){
+        // insert logic
+    }
+});
+```
+
+###onCloseComplete (Event)
+
+Trigger when completely closed metro alert.
+
+```javascript
+metroAlert("Alert", {
+    onCloseComplete: function(){
+        // insert logic
+    }
+});
+```
+##Authors
+
+* [Syed Owais Ali](https://github.com/syedowaisali) *original Author*
