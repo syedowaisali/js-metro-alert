@@ -13,7 +13,7 @@ First, load [jQuery](http://jquery.com/) (v1.4 or greater) and the plugin.
 
 Metro Alert accepts several options to customize its behaviour:
 
-###Theme (String)
+###theme (String)
 
 If you use metro alert with different style for other purpose you can use styles option default is metroStyle.INFO.
 
@@ -25,7 +25,19 @@ If you use metro alert with different style for other purpose you can use styles
     metroStyle.ERROR
 
 ```javascript
-metroAlert("Info Metro Alert.", {
+metroAlert("Info style alert", {
     theme: metroStyle.INFO
+});
+```
+
+###onInit (Event)
+
+Trigger before initialize metro alert.
+
+```javascript
+metroAlert("Alert", {
+    onInit: function(){
+        // insert logic
+    }
 });
 ```
